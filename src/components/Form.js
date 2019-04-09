@@ -1,16 +1,21 @@
-import React from 'react';
+import React from "react";
 
 class Form extends React.Component {
-    render() {
-        return(
-            <form onSubmit={this.props.adddBooks}>
-                <input type="text" name="title" placeholder="Title..."/>
-                <input type="text" name="author" placeholder="Author..."/>
-                <button>Send</button>
-            </form>
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.props.addBooks}>
+          <input type="text" name="title" placeholder="Title..." />
+          <input type="text" name="author" placeholder="Author..." />
+          <button>Send</button>
+        </form>
 
-        );
-    }
-};
+        <form onSubmit={this.props.changeApiKey}>
+          <button>Change Api Key</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default Form;

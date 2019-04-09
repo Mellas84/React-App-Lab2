@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const Books = props => (
-    <div>
-        {props.title && <p> Title: {props.title}</p>}
-        {props.author && <p> Author: {props.author}</p>}
-        {props.error && <p>{props.error}</p>}
-    </div>
-);
+class Books extends React.Component {
+  render() {
+    return (
+      <form onSubmit={this.props.getBooks}>
+        <button>Get Books</button>
+      </form>
+    );
+  }
+}
 export default Books;
