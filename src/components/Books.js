@@ -4,7 +4,7 @@ import { Table } from "reactstrap";
 class Books extends Component {
   render() {
     return (
-      <div className="App Container">
+      <div className="App container">
         <Table className="table">
           <thead>
             <tr>

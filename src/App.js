@@ -22,8 +22,7 @@ class App extends Component {
   state = {
     books: [],
     apiKey: localStorage.getItem("apiKey"),
-    error: "",
-    limit: ""
+    error: ""
   };
 
   componentDidMount() {
@@ -35,11 +34,10 @@ class App extends Component {
 
     var title = e.target.elements.title.value;
     var author = e.target.elements.author.value;
-
+    e.target.reset();
     const key = await getApiKey();
 
     console.log(key);
-
     if (title && author) {
       for (let limit = 0; limit < 10; limit++) {
         const { status, message, ...response } = await fetch(
@@ -55,8 +53,9 @@ class App extends Component {
             limit: limit
           });
           this.getBooks();
-          this.title = undefined;
-          this.author = undefined;
+          window.alert(
+            `We managed to add your book to the list after ${limit} tries!`
+          );
           break;
         } else {
           console.log(`ERROR: ${message}`);
@@ -111,12 +110,26 @@ class App extends Component {
     const data = this.state;
     return (
       <div>
-        <Titles />
-        {data.error}
-        <Form changeApiKey={this.changeApiKey} addBooks={this.addBooks} />
-        <Books books={data.books} />
-        <p>Retries: {data.limit}</p>
-        <p>Current API Key: {data.apiKey}</p>
+        <div className="wrapper">
+          <div className="main">
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-5 title-container">
+                  <Titles />
+                </div>
+                <div className="col-xss-7 form-container">
+                  {data.error}
+                  <Form
+                    changeApiKey={this.changeApiKey}
+                    addBooks={this.addBooks}
+                    apiKey={data.apiKey}
+                  />
+                  <Books books={data.books} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
