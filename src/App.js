@@ -50,12 +50,22 @@ class App extends Component {
           console.log(`Number of retries: ${limit}`);
           console.log({ ...response });
           this.setState({
-            limit: limit
+            limit: limit,
+            error: ""
           });
           this.getBooks();
-          window.alert(
-            `We managed to add your book to the list after ${limit} tries!`
-          );
+          if (limit === 0) {
+            window.alert(
+              `Status: ${status}\nWe managed to add your book to the list after ${limit +
+                1} try!`
+            );
+          } else {
+            window.alert(
+              `Status: ${status}\nWe managed to add your book to the list after ${limit +
+                1} tries!`
+            );
+          }
+
           break;
         } else {
           console.log(`ERROR: ${message}`);
@@ -93,7 +103,7 @@ class App extends Component {
       if (status === "success") {
         console.log("Books were successfully displayed");
         console.log(`status: ${status}`);
-        console.log(`Number of retries: ${limit}`);
+        console.log(`Number of retries: ${limit + 1}`);
         console.log({ data });
         this.setState({
           books: data.data,
@@ -118,6 +128,7 @@ class App extends Component {
                   <Titles />
                 </div>
                 <div className="col-xss-7 form-container">
+                  <Titles />
                   {data.error}
                   <Form
                     changeApiKey={this.changeApiKey}

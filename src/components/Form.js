@@ -12,7 +12,7 @@ class Form extends React.Component {
 
         <form onSubmit={this.props.changeApiKey}>
           <p>
-            <button>Change Api Key </button>
+            <button className="mr-2">Change Api Key </button>
             Current Key: {this.props.apiKey}
           </p>
         </form>
