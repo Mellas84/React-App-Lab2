@@ -68,6 +68,7 @@ class App extends Component {
 
           break;
         } else {
+          window.alert(`Status: ${status}\nOperation Failed`);
           console.log(`ERROR: ${message}`);
         }
       }
@@ -105,6 +106,7 @@ class App extends Component {
         console.log(`status: ${status}`);
         console.log(`Number of retries: ${limit + 1}`);
         console.log({ data });
+        console.log(data.data);
         this.setState({
           books: data.data,
           limit: limit
@@ -135,7 +137,7 @@ class App extends Component {
                     addBooks={this.addBooks}
                     apiKey={data.apiKey}
                   />
-                  <Books books={data.books} />
+                  <Books books={data.books} index={data.books.index} />
                 </div>
               </div>
             </div>
